@@ -6,19 +6,28 @@ const getTokenMeta = require('../lib/getTokenMeta');
 let tokenData = [];
 
 async function retrieveData(i) {
-    const card = {
-        token_metadata: await getTokenMeta(i),
-        token_tokenomics: await CheckERC20Safety(i),
-        token_marketcap: await getTokenMarketCap(i),
-        token_price: await getTokenPrice(i)
-    };
-    tokenData.push(card); 
+    try {
+        const card = {
+            token_metadata: await getTokenMeta(i),
+            token_tokenomics: await CheckERC20Safety(i),
+            token_marketcap: await getTokenMarketCap(i),
+            token_price: await getTokenPrice(i)
+        };
+        tokenData.push(card);
+    } catch (err) {
+        console.log(err);
+    }
+     
 }
 
 async function getAddressData(req, res) {
-    await retrieveData(req.params.address);
-    res.send(tokenData);
-    tokenData = [];
+    try {
+        await retrieveData(req.params.address);
+        res.send(tokenData);
+        tokenData = [];
+    } catch(err) {
+        console.log(err);
+    }
 }
 
 module.exports = getAddressData;
