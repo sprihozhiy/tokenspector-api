@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 4001;
 app.use(bodyParser.json());
 
 app.use("/address", addressRoutes);
-app.get("/", (req, res) => res.send("Welcome to the Users API!"));
+app.get("/", (req, res) => res.send("Welcome to the Tokenspector API!"));
 app.all("*", (req, res) =>res.send("You've tried reaching a route that doesn't exist."));
 
 app.listen(PORT, () => {
