@@ -15,9 +15,6 @@ async function retrieveData(i) {
     tokenData.push(card); 
 }
 
-
-
-
 async function getAddressData(req, res) {
     await retrieveData(req.params.address);
     res.send(tokenData);
