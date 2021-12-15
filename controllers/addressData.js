@@ -2,6 +2,7 @@ const CheckERC20Safety = require('../lib/checkERC20safety');
 const getTokenMarketCap = require('../lib/getTokenMarketCap');
 const getTokenPrice = require('../lib/getTokenPrice');
 const getTokenMeta = require('../lib/getTokenMeta');
+const getTokenLiquidity = require('../lib/getTokenLiquidity');
 
 let tokenData = [];
 
@@ -11,7 +12,8 @@ async function retrieveData(i) {
             token_metadata: await getTokenMeta(i),
             token_tokenomics: await CheckERC20Safety(i),
             token_marketcap: await getTokenMarketCap(i),
-            token_price: await getTokenPrice(i)
+            token_price: await getTokenPrice(i),
+            token_liquidity: await getTokenLiquidity(i)
         };
         tokenData.push(card);
     } catch (err) {
