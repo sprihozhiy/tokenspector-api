@@ -3,7 +3,7 @@ const getTokenMarketCap = require('../lib/getTokenMarketCap');
 const getTokenPrice = require('../lib/getTokenPrice');
 const getTokenMeta = require('../lib/getTokenMeta');
 const getTokenLiquidity = require('../lib/getTokenLiquidity');
-const getTokenFirstTxn = require('../lib/getTokenFirstTxn');
+const getTokenTxnAndHolders = require('../lib/getTokenTxnAndHolders');
 
 let tokenData = [];
 
@@ -15,7 +15,7 @@ async function retrieveData(i) {
             token_marketcap: await getTokenMarketCap(i),
             token_price: await getTokenPrice(i),
             token_liquidity: await getTokenLiquidity(i),
-            token_first_txn: await getTokenFirstTxn(i)
+            token_txn_holders: await getTokenTxnAndHolders(i)
         };
         tokenData.push(card);
     } catch (err) {
